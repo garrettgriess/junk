@@ -11,7 +11,7 @@ $(document).ready(function () {
       type: 'text/css',
       href: 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'
     }).appendTo('head');
-    html = '<div id="gg1"><div id="gg2">Seconds wasted looking at this box:<div id="gg3"><i class="fa fa-clock-o" aria-hidden="true"></i> <div id="gg4"></div></div></div></div>';
+    html = '<div id="gg1"><div id="gg2">Time wasted looking at this box:<div id="gg3"><i class="fa fa-clock-o" aria-hidden="true"></i> <div id="gg4"></div></div></div></div>';
     $('body').append(html);
     $('#gg1').css({
       'position': 'fixed',
@@ -22,8 +22,8 @@ $(document).ready(function () {
     $('#gg2').css({
       'position': 'relative',
       'top': '-90px',
-      'left': '-310px',
-      'width': '600px',
+      'left': '-335px',
+      'width': '650px',
       'text-align': 'center',
       'color': '#666666',
       'background-color': '#202020',
@@ -51,10 +51,35 @@ $(document).ready(function () {
       'line-height': '128px',
       'color': '#ffffff'
     });
+    function secondsToString(seconds)
+    {
+      var numyears = Math.floor(seconds / 31536000);
+      var numdays = Math.floor((seconds % 31536000) / 86400);
+      var numhours = Math.floor(((seconds % 31536000) % 86400) / 3600);
+      var numminutes = Math.floor((((seconds % 31536000) % 86400) % 3600) / 60);
+      var numseconds = (((seconds % 31536000) % 86400) % 3600) % 60;
+      var numreturn = '';
+      if (numyears) {
+        numreturn = numreturn + numyears + 'Y ';
+      }
+      if (numdays) {
+        numreturn = numreturn + numdays + 'D ';
+      }
+      if (numhours) {
+        numreturn = numreturn + numhours + ':';
+      }
+      if (numminutes !== 'undefined') {
+        numreturn = numreturn + ('00' + numminutes).slice( - 2) + ':';
+      }
+      if (numseconds !== 'undefined') {
+        numreturn = numreturn + ('00' + numseconds).slice( - 2);
+      }
+      return numreturn;
+    }
     var start = (new Date).getTime();
     function ggLoopForever() {
       setInterval(function () {
-        seconds = Math.floor(((new Date).getTime() - start) / 1000);
+        seconds = secondsToString(Math.floor(((new Date).getTime() - start) / 1000));
         $('#gg4').text(seconds);
       }, 1000);
     }
