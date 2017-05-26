@@ -17,7 +17,7 @@
 			box-shadow: 2px 2px 5px #dddddd;
 			background: #cccccc linear-gradient(#cccccc, #eeeeee);
 		}
-		.ggLoaded {
+		.ggLoadBar div {
 			background: #00779b repeating-linear-gradient( 350deg, 
 				#009ecf 0px,
 				#009ecf 30px,
@@ -43,13 +43,13 @@
 
 <body>
 	<h1>ggLoad Bar</h1>
-	<div class="ggLoadBar"><div class="ggLoaded"></div></div>
+	<div class="ggLoadBar"><div></div></div>
 	<script>
 		function ggLoadLoop() {
 			var ggf = 0;
 			setInterval(function () {
-				$('.ggLoaded').css('background-position', '0 ' + - ggf++ + 'px'); //Animation
-				$('.ggLoaded').css('width', ggf/5%100 + '%'); //Load Percent Demo
+				$('.ggLoadBar div').css('background-position', '0 ' + - ggf++ + 'px'); //Animation
+				$('.ggLoadBar div').css('width', ggf/5%100 + '%'); //Load Percent Demo
 			}, 50);
 		}
 		$(document).ready(function () {
