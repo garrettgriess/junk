@@ -1,7 +1,7 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<title>Test</title>
+	<title>ggLoadBar</title>
 	<style>
 		h1 {
 			margin: 50px 0;
@@ -42,18 +42,18 @@
 </head>
 
 <body>
-	<h1>ggLoad Bar</h1>
+	<h1>ggLoadBar</h1>
 	<div class="ggLoadBar"><div></div></div>
 	<script>
-		function ggLoadLoop() {
-			var ggf = 0;
+		function ggLoadBar() {
+			var lbi = 0;
 			setInterval(function () {
-				$('.ggLoadBar div').css('background-position', '0 ' + - ggf++ + 'px'); //Animation
-				$('.ggLoadBar div').css('width', ggf/5%100 + '%'); //Load Percent Demo
+				$('.ggLoadBar div').css('background-position', '0 ' + - lbi++ + 'px'); //Animation
+				$('.ggLoadBar div').css('width', lbi/5%100 + '%'); //Load Percent Demo
 			}, 50);
 		}
 		$(document).ready(function () {
-			$(ggLoadLoop);
+			$(ggLoadBar);
 		});
 	</script> 
 </body>
