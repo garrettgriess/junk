@@ -1,0 +1,29 @@
+<!DOCTYPE html> 
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Tesseract.js</title>
+	
+	<script src='https://cdn.rawgit.com/naptha/tesseract.js/1.0.10/dist/tesseract.js'></script>
+	<script>
+		function recImage(file) {
+			Tesseract.recognize(file.files[0]).progress(function(data){
+				//console.log(data);
+				document.getElementById('progress').value = Math.round(data.progress*100);
+			}).then(function(data){
+				//console.log(data);
+				document.getElementById('results').innerHTML = data.text;
+			})
+		}
+	</script>
+	
+</head>
+<body>
+
+	<h1>Tesseract.js - Optical Character Recognition</h1>
+	Image: <input type="file" onchange="recImage(this);">
+	<progress id="progress" value="0" max="100"></progress> 
+	<div id="results"></div>
+	
+</body>
+</html>
