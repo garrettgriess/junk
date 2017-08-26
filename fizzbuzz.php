@@ -3,8 +3,8 @@
 	Garrett's FizzBuzz Script - Version 0.04
 
 	History Log:
-	0.04 - Changed $i to start at 1. Changed += to .=. Again, wrong language. Fixed spelling mistake in comments. Dang it!
-	0.03 - Added parentheses to line 18. Dang it!
+	0.04 - Changed $i to start at 1. Changed += to .= -Thinking of JS. Fixed spelling mistake in comments. Dang it!
+	0.03 - Added parentheses to "if !$num" line. Dang it!
 	0.02 - Removed semi colon from for loop. Got Carried away with the semi colons. Dang it!
 
 	Future Plans:
