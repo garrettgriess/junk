@@ -1,28 +1,6 @@
 <?
-require('vars.php');
-require('func.php');
-
-/*
-//Update Test
-$mysql_update = array(
-	'deviceid' => "Test",
-	'quick' => "test",
-);
-$mysql_results = mysql_update("gps",$mysql_update,"`id`='3'");
-if ($mysql_results!="OK") {
-	echo $mysql_results;
-} else {
-	echo "Updated.";
-}
-
-//Delete Test
-$mysql_results = mysql_delete("gps","`id`='3'");
-if ($mysql_results!="OK") {
-	echo $mysql_results;
-} else {
-	echo "Deleted.";
-}
-*/
+require('inc/vars.php');
+require('inc/func.php');
 
 if ($_GET['lat']&&$_GET['lon']) {
 
@@ -49,6 +27,8 @@ if ($_GET['lat']&&$_GET['lon']) {
 	
 } else {
 	
+	require('inc/map.php');
+	/*
 	//Select Database
 	$mysql_select = array('ts','lat','lon','speed','heading','vacc','hacc','altitude','battery');
 	$mysql_results = mysql_select("gps",$mysql_select,null,'`ts` DESC',5);
@@ -69,10 +49,9 @@ if ($_GET['lat']&&$_GET['lon']) {
 				?><tr><?
 					foreach ($mysql_select as $val) {
 						if ($val=="speed"||$val=="heading"||$val=="vacc"||$val=="hacc") {
-							?><td><?=round($mysql_results[$i][$val])?></td><?
-						} else {
-							?><td><?=$mysql_results[$i][$val]?></td><?
+							$mysql_results[$i][$val]=round($mysql_results[$i][$val]);
 						}
+						?><td><?=$mysql_results[$i][$val]?></td><?
 					}
 				?></tr><?
 			}
@@ -80,6 +59,29 @@ if ($_GET['lat']&&$_GET['lon']) {
 		}
 		
 	}
+	*/
 	
 }
+
+/*
+//Update Test
+$mysql_update = array(
+	'deviceid' => "Test",
+	'quick' => "test",
+);
+$mysql_results = mysql_update("gps",$mysql_update,"`id`='3'");
+if ($mysql_results!="OK") {
+	echo $mysql_results;
+} else {
+	echo "Updated.";
+}
+
+//Delete Test
+$mysql_results = mysql_delete("gps","`id`='3'");
+if ($mysql_results!="OK") {
+	echo $mysql_results;
+} else {
+	echo "Deleted.";
+}
+*/
 ?>
