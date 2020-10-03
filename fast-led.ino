@@ -14,8 +14,9 @@ void setup() {
 void loop() { 
   //Serial.println("Loop Started");
 
-  pixelBlur();
-  
+  //pixelBlur();
+  pixelBlurReverse();
+
   /*
   // Demo All...
   pixelRun();
@@ -37,6 +38,7 @@ void loop() {
   }
   for (int i = 0; i < 3; i++) {
     pixelBlur();
+    pixelBlurReverse(); //Can't run at the same time as pixelBlur and don't know why
   }
   cylon();
   */
@@ -92,11 +94,32 @@ void slowBurn() {
 void pixelBlur() {
   int hue = random(255);
   int fastSlow = random(3);
+  
   for (int i = 0; i < NUM_LEDS; i++) {
     for (int j = 0; j <= 25; j++) {
       leds[i+j].setHSV(hue, 255, j * 10);
     }
     FastLED.show();
+    
+    if (fastSlow == 0) {
+      delay(10);
+    } else if (fastSlow == 1) {
+      delay(20);
+    }
+  }
+}
+
+void pixelBlurReverse() {
+  int hue = random(255);
+  int fastSlow = random(3);
+  for (int i = NUM_LEDS; i > 0; i--) {
+    for (int j = 25; j > 0; j--) {
+      leds[i+j].setHSV(hue, 255, 25-(j * 10));
+      
+    }
+    FastLED.show();
+    
+    FastLED.clear();
     if (fastSlow == 0) {
       delay(10);
     } else if (fastSlow == 1) {
