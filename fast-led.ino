@@ -13,9 +13,8 @@ void setup() {
 
 void loop() { 
   //Serial.println("Loop Started");
-  FastLED.clear();
 
-  randomBlink();
+  pixelBlur();
   
   /*
   // Demo All...
@@ -53,6 +52,8 @@ void loop() {
 
 }
 
+//Idea: Add one to the end, one at a time from the right.
+
 void cylon() {
   FastLED.clear();
   for(int i = 1; i < NUM_LEDS-1; i++) {
@@ -77,13 +78,11 @@ void cylon() {
   }
 }
 
-
-//Idea: Add one to the end, one at a time from the right.
-
 void slowBurn() {
+  //Takes Appx 00:13:20
   FastLED.clear();
   for(int i = 0; i < NUM_LEDS; i++) {
-    for (int j = MAX_ALL_BRIGHT; j > 0; j--) {
+    for (int j = 255; j > 0; j--) {
       leds[i].setHSV(25, 255, j);
       FastLED.show();
     }
@@ -91,12 +90,18 @@ void slowBurn() {
 }
 
 void pixelBlur() {
-  FastLED.clear();
+  int hue = random(255);
+  int fastSlow = random(3);
   for (int i = 0; i < NUM_LEDS; i++) {
     for (int j = 0; j <= 25; j++) {
-      leds[i+j].setHSV(150, 255, j * 10);
+      leds[i+j].setHSV(hue, 255, j * 10);
     }
     FastLED.show();
+    if (fastSlow == 0) {
+      delay(10);
+    } else if (fastSlow == 1) {
+      delay(20);
+    }
   }
 }
 
