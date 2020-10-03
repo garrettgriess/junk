@@ -15,7 +15,7 @@ void loop() {
   //Serial.println("Loop Started");
   FastLED.clear();
 
-  cylon();
+  randomBlink();
   
   /*
   // Demo All...
@@ -218,20 +218,19 @@ void pulseAll() {
 void randomBlink() {
   FastLED.clear();
  for(int i = 0; i < NUM_LEDS; i++) {
-  int fiftyfifty = random(2);
-
-  if (fiftyfifty > 0) {
-    leds[i] = CRGB::Black;
-  } else {
-    int red = 0;
-    int green = random(0, 50);
+  int oneOfMany = random(10);
+  if (oneOfMany == 0) {
+    int red = random(0, 10);
+    int green = random(0, 100);
     int blue = random(0, 255);
-    leds[i].setRGB( red, green, blue);  
+    leds[i].setRGB( red, green, blue);
+  } else {
+    leds[i] = CRGB::Black;
   }
   
  }
  FastLED.show();
- delay(50);
+ delay(500);
 }
 
 void backAndForth() {
